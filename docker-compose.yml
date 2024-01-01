@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: ./client  # Update this path to the location of your React app
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"  # Map host port 8080 to container port 80
+
+  backend:
+    build:
+      context: ./server  # Update this path to the location of your Express app
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"  # Map host port 3000 to container port 3000
+    depends_on:
+      - frontend  # Ensure the frontend container is running before starting the backend
